@@ -2,7 +2,6 @@ package LapTrinhWebT4.controllers;
 
 import java.io.IOException;
 
-import LapTrinhWebT4.Constant;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -11,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import LapTrinhWebT4.service.impl.UserServiceImpl;
+import LapTrinhWebT4.utils.Constant;
 import LapTrinhWebT4.service.*;
 
 @SuppressWarnings("serial")

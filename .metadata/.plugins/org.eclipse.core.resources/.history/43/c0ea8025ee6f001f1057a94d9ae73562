@@ -1,0 +1,5 @@
+package LapTrinhWebT4.controllers.admin;
+
+public class HomeController {
+
+}

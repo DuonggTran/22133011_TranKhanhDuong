@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import LapTrinhWebT4.service.impl.UserServiceImpl;
+import LapTrinhWebT4.utils.Constant;
 import LapTrinhWebT4.service.*;
-import LapTrinhWebT4.Constant;
 
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns = "/login")

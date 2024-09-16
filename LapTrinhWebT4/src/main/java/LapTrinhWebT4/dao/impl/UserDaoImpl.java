@@ -28,7 +28,7 @@ public class UserDaoImpl extends SQLServerConnection implements IUserDao {
 			while (rs.next()) {
 				list.add(new UserModel(rs.getString("email"), rs.getString("username"), rs.getString("fullname"),
 						rs.getString("password"), rs.getString("avatar"), rs.getInt("roleid"), rs.getString("phone"),
-						rs.getDate("createDate")));
+						rs.getDate("createdDate")));
 			}
 			return list;
 		} catch (Exception e) {
@@ -48,7 +48,8 @@ public class UserDaoImpl extends SQLServerConnection implements IUserDao {
 	public void insert(UserModel user) {
 		String sql = "INSERT INTO [User](email, username, fullname, password, avatar, roleid,phone,createddate) VALUES (?,?,?,?,?,?,?,?)";
 		try {
-			conn = new SQLServerConnection().getConnection();
+			new SQLServerConnection();
+			conn = SQLServerConnection.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getEmail());
 			ps.setString(2, user.getUserName());
@@ -68,7 +69,7 @@ public class UserDaoImpl extends SQLServerConnection implements IUserDao {
 	public UserModel findByUserName(String username) {
 		String sql = "SELECT * FROM [User] WHERE username = ? ";
 		try {
-			conn = new SQLServerConnection().getConnection();
+			conn = SQLServerConnection.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			rs = ps.executeQuery();
@@ -140,4 +141,18 @@ public class UserDaoImpl extends SQLServerConnection implements IUserDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	public void changePassword (String username, String password) {
+		String sql = "UPDATE [User] SET password = ? WHERE username = ?";
+		try {
+			new SQLServerConnection();
+			conn = SQLServerConnection.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, password);
+			ps.setString(2, username);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
