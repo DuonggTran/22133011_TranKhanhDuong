@@ -34,7 +34,7 @@
                         <li><a href="shop-account.html">My Account</a></li>
                         <li><a href="shop-wishlist.html">My Wishlist</a></li>
                         <li><a href="shop-checkout.html">Checkout</a></li>
-                        <li><a href="/Login_Register/login">Log In</a></li>
+                        <li><a href="/LapTrinhWebT4/login">Log In</a></li>
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->

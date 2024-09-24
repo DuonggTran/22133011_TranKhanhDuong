@@ -90,7 +90,7 @@ bootstrap.min.css"
 					</div>
 					<button type="submit" class="btn btn-primary w-100">Reset
 						Password</button>
-						<a href="/Login_Register/login" class="btn btn-link">Đăng nhập?</a>
+						<a href="/LapTrinhWebT4/login" class="btn btn-link">Đăng nhập?</a>
 				</form>
 			</div>
 
