@@ -21,16 +21,19 @@ public class WaitingController extends HttpServlet {
 			UserModel u = (UserModel) session.getAttribute("account");
 			session.setAttribute("account", u);
             req.setAttribute("account", u);
+            session.setAttribute("userId", u.getId());
 			if (u.getRoleid() == 1) {
 				RequestDispatcher rd =req.getRequestDispatcher("/views/login-success.jsp");
 				rd.forward(req, resp);
 			} else if (u.getRoleid() == 2) {
-				resp.sendRedirect(req.getContextPath() + "/manager/home");
+				resp.sendRedirect(req.getContextPath() + "/views/home.jsp");
 			} else {
 				resp.sendRedirect(req.getContextPath() + "/home");
 			}
 		} else {
-			resp.sendRedirect(req.getContextPath() + "/login");
+			RequestDispatcher rd =req.getRequestDispatcher("/views/home.jsp");
+			rd.forward(req, resp);
+			/* resp.sendRedirect(req.getContextPath() + "/views/home.jsp"); */
 		}
 	}
 }

@@ -28,7 +28,7 @@ public class UserDaoImpl extends SQLServerConnection implements IUserDao {
 			while (rs.next()) {
 				list.add(new UserModel(rs.getString("email"), rs.getString("username"), rs.getString("fullname"),
 						rs.getString("password"), rs.getString("avatar"), rs.getInt("roleid"), rs.getString("phone"),
-						rs.getDate("createdDate")));
+						rs.getDate("createDate")));
 			}
 			return list;
 		} catch (Exception e) {
@@ -46,7 +46,7 @@ public class UserDaoImpl extends SQLServerConnection implements IUserDao {
 
 	@Override
 	public void insert(UserModel user) {
-		String sql = "INSERT INTO [User](email, username, fullname, password, avatar, roleid,phone,createddate) VALUES (?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO [User](email, username, fullname, password, avatar, roleid,phone,createdate) VALUES (?,?,?,?,?,?,?,?)";
 		try {
 			new SQLServerConnection();
 			conn = SQLServerConnection.getConnection();
@@ -83,7 +83,7 @@ public class UserDaoImpl extends SQLServerConnection implements IUserDao {
 				user.setAvatar(rs.getString("avatar"));
 				user.setRoleid(Integer.parseInt(rs.getString("roleid")));
 				user.setPhone(rs.getString("phone"));
-				user.setCreatedDate(rs.getDate("createdDate"));
+				user.setCreatedDate(rs.getDate("createDate"));
 				return user;
 			}
 		} catch (Exception e) {
@@ -153,6 +153,24 @@ public class UserDaoImpl extends SQLServerConnection implements IUserDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public boolean updateUserInfo(UserModel user) {
+		String sql = "UPDATE [User] SET fullname = ?, phone = ?, images = ? WHERE id = ?";
+	    try (Connection conn = getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+	        stmt.setString(1, user.getFullName());
+	        stmt.setString(2, user.getPhone());
+	        stmt.setString(3, user.getImages());
+	        stmt.setInt(4, user.getId());
+
+	        int rowsUpdated = stmt.executeUpdate();
+	        return rowsUpdated > 0;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return false;
 	}
 
 }

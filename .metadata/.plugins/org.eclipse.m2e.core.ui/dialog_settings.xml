@@ -51,6 +51,8 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="Tuan5"/>
+			<item value="BT_Tuan5"/>
 			<item value="LapTrinhWebT4"/>
 			<item value="LapTrinhWeb"/>
 			<item value="Hello"/>

@@ -50,6 +50,12 @@ public class RegisterController extends HttpServlet {
 		String phone = req.getParameter("phone");
 		IUserService service = new UserServiceImpl();
 		String alertMsg = "";
+		if (username.isEmpty() || password.isEmpty() || email.isEmpty()||fullname.isEmpty()||phone.isEmpty()) {
+			alertMsg = "Thông tin không được rỗng";
+			req.setAttribute("alert", alertMsg);
+			req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
+			return;
+		}
 		if (service.checkExistEmail(email)) {
 			alertMsg = "Email đã tồn tại!";
 			req.setAttribute("alert", alertMsg);
@@ -62,11 +68,12 @@ public class RegisterController extends HttpServlet {
 			req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
 			return;
 		}
-		boolean isSuccess = service.register(username, password, email, fullname, phone);
+		boolean isSuccess = service.register(email, password, username, fullname, phone);
 		if (isSuccess) {
 			// SendMail sm = new SendMail();
 			// sm.sendMail(email, "Shopping.iotstar.vn", "Welcome to Shopping. Please
 			// Loginto use service. Thanks !");
+			alertMsg = "Đăng kí thành công!";
 			req.setAttribute("alert", alertMsg);
 			resp.sendRedirect(req.getContextPath() + "/login");
 		} else {
